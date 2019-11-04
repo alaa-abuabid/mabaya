@@ -3,8 +3,10 @@ package com.alaa.mabaya.model;
 import java.util.UUID;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Entity
 public class Product {
 
 	@Id
@@ -24,6 +26,16 @@ public class Product {
 	public Product() {
 		super();
 	}
+	
+	public Product( String title, double price, String category, int sellerId) {
+		super();
+		this.serial_number =  UUID.randomUUID();
+		this.title = title;
+		this.price = price;
+		this.category = category;
+		this.sellerId = sellerId;
+	}
+	
 	
 	public UUID getSerial_number() {
 		return serial_number;
