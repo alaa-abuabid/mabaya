@@ -8,4 +8,6 @@ import com.alaa.mabaya.model.Campaign;
 @Repository
 public interface CampaignRespository extends JpaRepository<Campaign, Integer>{
 
+	Campaign findFirst1ByOrderByIdDesc();
+
 }

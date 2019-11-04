@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 
 @Entity
 public class Campaign {
@@ -14,14 +15,19 @@ public class Campaign {
 	private Integer id;
 	@Column(name ="status")
 	private String status;
-	@Column(name ="name")
+	@Column(name ="name", nullable=false)
 	private String name;
-	@Column(name ="bid")
+	@Column(name ="bid", nullable=false)
 	private double bid;
-	@Column(name ="seller_id")
+	@Column(name ="seller_id", nullable=false)
 	private Integer sellerId;
 	
-	
+	@PrePersist
+	void preInsert() {
+		if(this.status !=null) this.status= this.status.toUpperCase();
+		if (!this.status.equals("DELETED"))
+	       this.status ="ACTIVE";
+	}
 	
 	
 	
